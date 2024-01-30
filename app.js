@@ -11,7 +11,7 @@ const app = express()
 //deploying nodejs app
  app.use(cors({
     //within origin we pass the frontend url, backend only allow this allow
-    origin:"http://localhost:5173",//must be pass though array 
+    origin: process.env.FRONTEND_URL,//must be pass though array 
     // Access-Control-Allow-Origin: *
     methods:["GET" , "POST","PUT","DELETE"],
     credentials: true,//by giving true backend allow cookies to give to the frontend
