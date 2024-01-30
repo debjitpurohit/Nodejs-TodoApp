@@ -57,16 +57,29 @@ export const getuserdetails = (req,res)=>{
     })
 
 }
-export const logout = (req,res)=>{
-    res.status(200).cookie("token" , "" , {
-        expires :new Date(Date.now()),
-        //for deploying but in case of postman samesite must be lax and secure must be false 
-        samesite:process.env.NODE_ENV==="Development"?"lax":"none",//if we give strict mode . cors er credentials e true pass korleu cookie send hobe na frontend e
-        secure : process.env.NODE_ENV==="Development"?false :true, 
-    }).json({
-        success : true,
-        message : "Logout Successfully"
+// export const logout = (req,res)=>{
+//     res.status(200).cookie("token" , "" , {
+//         expires :new Date(Date.now()),
+//         //for deploying but in case of postman samesite must be lax and secure must be false 
+//         samesite:process.env.NODE_ENV==="Development"?"lax":"none",//if we give strict mode . cors er credentials e true pass korleu cookie send hobe na frontend e
+//         secure : process.env.NODE_ENV==="Development"?false :true, 
+//     }).json({
+//         success : true,
+//         message : "Logout Successfully"
+//     })
+// }
+export const logout = (req, res) => {
+  res
+    .status(200)
+    .cookie("token", "", {
+      expires: new Date(Date.now()),
+      sameSite: process.env.NODE_ENV === "Develpoment" ? "lax" : "none",
+      secure: process.env.NODE_ENV === "Develpoment" ? false : true,
     })
-}
+    .json({
+      success: true,
+      user: req.user,
+    });
+};
 
  
